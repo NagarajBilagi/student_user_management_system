@@ -27,26 +27,31 @@ The project also includes a conceptual design for an AI-based recommendation sys
 
 ## Project Structure
 
+```text
+
 user_management_system/
 │
 ├── app/
 │   ├── __init__.py
-│   ├── config.py
-│   ├── db.py
-│   ├── models.py
-│   ├── schemas.py
-│   ├── security.py
-│   └── main.py
+│   ├── config.py          # Environment variables and settings
+│   ├── db.py              # Database connection, session handling
+│   ├── models.py          # SQLAlchemy models
+│   ├── schemas.py         # Pydantic request/response schemas
+│   ├── security.py        # Password hashing & JWT utilities
+│   └── main.py            # FastAPI application (routes, logic)
 │
 ├── ui/
 │   ├── __init__.py
-│   └── student_ui.py
+│   └── student_ui.py      # Streamlit frontend UI
 │
-├── AI_recommendation.pdf
-├── requirements.txt                  
-├── .gitignore              
-├── README.md            
-└── .env     
+├── AI_recommendation.pdf  # Task 4: AI recommendation concept
+│
+├── requirements.txt       # Python dependencies
+├── .gitignore             # Ignored files 
+├── README.md              # Project documentation
+└── .env                   # Environment variables 
+
+```
 
 ---
 
