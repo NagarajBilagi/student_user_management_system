@@ -25,11 +25,38 @@ The project also includes a conceptual design for an AI-based recommendation sys
 
 ---
 
+## Project Structure
+
+user_management_system/
+│
+├── app/
+│   ├── __init__.py
+│   ├── config.py
+│   ├── db.py
+│   ├── models.py
+│   ├── schemas.py
+│   ├── security.py
+│   └── main.py
+│
+├── ui/
+│   ├── __init__.py
+│   └── student_ui.py
+│
+├── AI_recommendation.pdf
+├── requirements.txt                  
+├── .gitignore              
+├── README.md            
+└── .env     
+
+---
+
 ## 📦 Installation
 
 ### 1️⃣ Install dependencies
 
+```
 pip install -r requirements.txt
+```
 
 ### 2️⃣ Configure MySQL
 Create a database:
@@ -47,12 +74,13 @@ Before running the commands, make sure you are inside the project root folder:
 
 ```bash
 uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
-
+```
 
 ### Start the Streamlit UI:
 
 ```bash
 streamlit run ui/student_ui.py
+```
 
 
 ---
