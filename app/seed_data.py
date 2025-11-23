@@ -1,17 +1,14 @@
-# app/seed_data.py
-
 from .db import SessionLocal
 from .models import InterestResource
 
 
 def seed_interest_resources():
     """
-    Seed the interest_resources table with initial data if it's empty.
-    This function is safe to call multiple times: it won't duplicate data.
+    to seed the interest_resources table with initial data if it's empty.
     """
     db = SessionLocal()
     try:
-        # Check if there is already data
+        # Checks if there is already data
         existing_count = db.query(InterestResource).count()
         if existing_count > 0:
             print(f"[seed] interest_resources already has {existing_count} rows. Skipping seeding.")
@@ -54,5 +51,4 @@ def seed_interest_resources():
 
 
 if __name__ == "__main__":
-    # Allows you to run:  python -m app.seed_data
     seed_interest_resources()

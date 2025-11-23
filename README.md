@@ -109,8 +109,8 @@ Frontend (Streamlit UI): http://localhost:8501
 
 ## 📄 Documentation
 
-- **Architecture Details:** `ARCHITECTURE.md`  
-- **AI Recommendation Approach:** `AI_RECOMMENDATION.pdf`
+- **Architecture Details:** `architecture.md`  
+- **AI Recommendation Approach:** `AI_recommendation.pdf`
 
 ---
 
