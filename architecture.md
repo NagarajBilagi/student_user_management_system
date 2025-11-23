@@ -32,7 +32,7 @@ Fetch events, workshops, trainings based on selected interest.
 
 ---
 
-## 🧩 2. Use Cases
+## 🧩  Use Cases
 
 ### **Use Case 1: Student Registration & Login**
 **Description:** A student creates an account and logs into the system.  
@@ -75,6 +75,70 @@ Streamlit UI <------> FastAPI Backend <------> MySQL Database
 
 
 ---
+
+                     +---------------------------+
+                     |    Student Input Data     |
+                     |---------------------------|
+                     | - Email / Password        |
+                     | - Selected Interest       |
+                     +---------------------------+
+                                  |
+                                  v
+                 +--------------------------------------+
+                 |           Streamlit UI               |
+                 |--------------------------------------|
+                 | - Sends login data to backend        |
+                 | - Sends selected interest to backend |
+                 | - Displays returned resources        |
+                 +-----------------+--------------------+
+                                   |
+                                   |  HTTP (JSON, REST API)
+                                   v
+                 +--------------------------------------+
+                 |           FastAPI Backend            |
+                 |--------------------------------------|
+                 | - /login: authenticate student       |
+                 | - /me: get current student           |
+                 | - /me/interest: store interest       |
+                 | - /resources: fetch resources        |
+                 +-----------------+--------------------+
+                                   |
+                                   |  SQLAlchemy ORM
+                                   v
+             +------------------------------------------------+
+             |                 MySQL Database                 |
+             |------------------------------------------------|
+             |  Table: students_data                          |
+             |    - id, name, email, password_hash, interest  |
+             |                                                |
+             |  Table: interest_resources                     |
+             |    - id, interest_tag, workshop, training,     |
+             |      event                                     |
+             +-----------------+------------------------------+
+                                   |
+                                   |  Query:
+                                   |  SELECT * FROM interest_resources
+                                   |   WHERE interest_tag = student.interest
+                                   v
+                 +--------------------------------------+
+                 |     Filtered Resources Returned      |
+                 |--------------------------------------|
+                 | - Matching workshops                 |
+                 | - Matching trainings                 |
+                 | - Matching events                    |
+                 +-----------------+--------------------+
+                                   |
+                                   v
+                      +-----------------------------+
+                      |    Streamlit UI Output      |
+                      |-----------------------------|
+                      | - Shows relevant resources  |
+                      |   based on student's        |
+                      |   selected interest         |
+                      +-----------------------------+
+
+---
+
 
 ## 🧩  Main Components / Services
 

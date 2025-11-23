@@ -1,4 +1,4 @@
-# 🎓 Student Resource Management System
+# 🎓 Student User Management System
 
 A student user management system prototype that allows students to register, log in, set their academic interest, and retrieve relevant university resources such as workshops, events, and trainings.  
 The project also includes a conceptual design for an AI-based recommendation system.
@@ -41,16 +41,18 @@ CREATE DATABASE student_data_base;
 
 ## ▶️ Running the Application
 
+Before running the commands, make sure you are inside the project root folder:
+
 ### Start the FastAPI backend:
 
+```bash
 uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 
 
 ### Start the Streamlit UI:
+
+```bash
 streamlit run ui/student_ui.py
-
-
----
 
 
 ---
