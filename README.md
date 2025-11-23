@@ -38,7 +38,8 @@ user_management_system/
 │   ├── models.py          # SQLAlchemy models
 │   ├── schemas.py         # Pydantic request/response schemas
 │   ├── security.py        # Password hashing & JWT utilities
-│   └── main.py            # FastAPI application (routes, logic)
+│   ├── main.py            # FastAPI application (routes, logic)
+│   └── seed_data.py       # Inserts default interest-resource data into the database
 │
 ├── ui/
 │   ├── __init__.py
@@ -90,7 +91,21 @@ streamlit run ui/student_ui.py
 
 ---
 
+## 🐳 Dockerized Setup
 
+Build and run the entire application with:
+
+```bash
+docker compose build
+docker compose up
+```
+Then open:
+
+Backend (FastAPI docs): http://localhost:8000/docs
+
+Frontend (Streamlit UI): http://localhost:8501
+
+---
 
 ## 📄 Documentation
 

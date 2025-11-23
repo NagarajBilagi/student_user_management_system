@@ -1,9 +1,3 @@
-# DATABASE_URL = "mysql+pymysql://root:root@localhost:3306/student_data_base"
-
-# SECRET_KEY = "CHANGE_ME_TO_A_RANDOM_SECRET"
-# ALGORITHM = "HS256"
-# ACCESS_TOKEN_EXPIRE_MINUTES = 60
-
 
 from dotenv import load_dotenv
 import os
@@ -11,7 +5,7 @@ import os
 load_dotenv()  # Load the .env file
 
 DATABASE_URL = os.getenv("DATABASE_URL")
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY", "CHANGE_ME_IN_ENV")
 ALGORITHM = os.getenv("ALGORITHM", "HS256")
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 60))
 

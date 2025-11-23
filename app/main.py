@@ -8,8 +8,12 @@ from .schemas import (
     StudentResponse, InterestSelectRequest, InterestResourceResponse
 )
 from .security import hash_password, verify_password, create_access_token, get_current_student
+from .seed_data import seed_interest_resources
+
 
 Base.metadata.create_all(bind=engine)
+
+seed_interest_resources()
 
 app = FastAPI()
 
