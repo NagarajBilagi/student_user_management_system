@@ -26,8 +26,8 @@ if "last_resources" not in st.session_state:
 def set_token(token: Optional[str]):
     st.session_state.access_token = token
 
-
-def get_headers():
+# attaches JWS token to API request only when user is logged in
+def get_headers():  
     if st.session_state.access_token:
         return {"Authorization": f"Bearer {st.session_state.access_token}"}
     return {}

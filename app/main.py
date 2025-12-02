@@ -11,9 +11,9 @@ from .security import hash_password, verify_password, create_access_token, get_c
 from .seed_data import seed_interest_resources
 
 
-Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(bind=engine)   # Create all tables defined in the SQLAlchemy models
 
-seed_interest_resources()
+seed_interest_resources()               #Insert default interest resources, only if the table has no data
 
 app = FastAPI()
 

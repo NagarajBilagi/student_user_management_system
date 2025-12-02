@@ -1,54 +1,48 @@
-from .db import SessionLocal
-from .models import InterestResource
+from app.db import SessionLocal
+from app.models import InterestResource
 
+INTEREST_RESOURCE_DATA = [
+    {
+        "interest_tag": "AI",
+        "workshops": "AI Workshop",
+        "training": "AI Training Program",
+        "event": "AI Summit"
+    },
+    {
+        "interest_tag": "Robotics",
+        "workshops": "Robotics Bootcamp",
+        "training": "Robotics Certification",
+        "event": "Robotics Expo"
+    },
+    {
+        "interest_tag": "Data Science",
+        "workshops": "Data Science Hands-on",
+        "training": "Data Analytics Course",
+        "event": "Data Summit"
+    },
+    {
+        "interest_tag": "Software Development",
+        "workshops": "Full Stack Workshop",
+        "training": "Web Dev Course",
+        "event": "Developer Conference"
+    }
+]
 
-def seed_interest_resources():
+def seed_interest_resources(db_session=None):
     """
-    to seed the interest_resources table with initial data if it's empty.
+    Seeds the InterestResource table.
+    If db_session is provided (like in tests), use that.
+    Otherwise, use SessionLocal() from the main app database.
     """
-    db = SessionLocal()
-    try:
-        # Checks if there is already data
-        existing_count = db.query(InterestResource).count()
-        if existing_count > 0:
-            print(f"[seed] interest_resources already has {existing_count} rows. Skipping seeding.")
-            return
 
-        print("[seed] Seeding interest_resources table...")
+    db = db_session or SessionLocal()
 
-        rows = [
-            InterestResource(
-                interest_tag="AI",
-                workshops="Intro to AI Workshop; Hands-on with Neural Networks",
-                training="AI Fundamentals Online Training",
-                event="AI Conference 2025",
-            ),
-            InterestResource(
-                interest_tag="Robotics",
-                workshops="Robotics Bootcamp; Robot Arm Programming",
-                training="ROS (Robot Operating System) Training",
-                event="Robotics Hackathon",
-            ),
-            InterestResource(
-                interest_tag="Data Science",
-                workshops="Data Visualization Workshop; SQL for Analysts",
-                training="Python for Data Science Training",
-                event="Data Summit 2025",
-            ),
-            InterestResource(
-                interest_tag="Software Development",
-                workshops="Clean Code Workshop; Git & GitHub Basics",
-                training="Full-Stack Web Development Training",
-                event="Developer Meetup: Modern Backend APIs",
-            ),
-        ]
+    # Avoid duplicate seeding
+    if db.query(InterestResource).first():
+        return  # already seeded
 
-        db.add_all(rows)
-        db.commit()
-        print("[seed] Seeding completed.")
-    finally:
-        db.close()
+    for item in INTEREST_RESOURCE_DATA:
+        db.add(InterestResource(**item))
 
-
-if __name__ == "__main__":
-    seed_interest_resources()
+    db.commit()
+    db.close()
